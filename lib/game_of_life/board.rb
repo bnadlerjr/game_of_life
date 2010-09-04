@@ -16,14 +16,23 @@ class Board
     @grid[x][y]
   end
 
+  def num_live_neighbors(x, y)
+    @grid[x-1][y-1] +
+    @grid[x][y-1]   +
+    @grid[x+1][y-1] +
+    @grid[x-1][y]   +
+    @grid[x+1][y]   +
+    @grid[x-1][y+1] +
+    @grid[x][y+1]   +
+    @grid[x+1][y+1]
+  end
+
   def get_neighbor(x, y, position)
     return @grid[x-1][y-1] if 1 == position
     return @grid[x][y-1]   if 2 == position
     return @grid[x+1][y-1] if 3 == position
-
     return @grid[x-1][y]   if 4 == position
     return @grid[x+1][y]   if 5 == position
-
     return @grid[x-1][y+1] if 6 == position
     return @grid[x][y+1]   if 7 == position
     return @grid[x+1][y+1] if 8 == position

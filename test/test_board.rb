@@ -66,4 +66,21 @@ class TestBoard < Test::Unit::TestCase
       assert_equal 1, @board.get_neighbor(1,1, k)
     end
   end
+
+  def test_get_live_neighbors
+    [
+      { :grid => [[0,0,0], [0,1,0], [0,0,0]], :num_live => 0 },
+      { :grid => [[1,0,0], [0,1,0], [0,0,0]], :num_live => 1 },
+      { :grid => [[1,1,0], [0,1,0], [0,0,0]], :num_live => 2 },
+      { :grid => [[1,1,1], [0,1,0], [0,0,0]], :num_live => 3 },
+      { :grid => [[1,1,1], [1,1,0], [0,0,0]], :num_live => 4 },
+      { :grid => [[1,1,1], [1,1,1], [0,0,0]], :num_live => 5 },
+      { :grid => [[1,1,1], [1,1,1], [1,0,0]], :num_live => 6 },
+      { :grid => [[1,1,1], [1,1,1], [1,1,0]], :num_live => 7 },
+      { :grid => [[1,1,1], [1,1,1], [1,1,1]], :num_live => 8 }
+    ].each do |scenario|
+      @board.instance_eval { @grid = scenario[:grid] }
+      assert_equal scenario[:num_live], @board.num_live_neighbors(1, 1)
+    end
+  end
 end

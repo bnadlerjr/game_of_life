@@ -11,6 +11,8 @@ class TestGameOfLife < Test::Unit::TestCase
     assert GameOfLife.new
   end
 
+  def test_check_for_reproduction
+  end
 #  def test_get_grid
 #    assert @game.grid
 #  end

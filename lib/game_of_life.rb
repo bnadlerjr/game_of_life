@@ -15,10 +15,16 @@ class GameOfLife
         row.each do |cell|
           if ALIVE == cell
           else
-            
+            check_for_reproduction(row, cell)
           end
         end
       end
     end
+  end
+
+  private
+
+  def check_for_reproduction(row, col)
+    
   end
 end
