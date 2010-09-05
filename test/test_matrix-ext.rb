@@ -24,7 +24,8 @@ class TestMatrixExtensions < Test::Unit::TestCase
       { :x => 4, :y => 2, :s => 2, :m => Matrix[[1,0],[0,1],[0,0]] },      #cr
       { :x => 0, :y => 4, :s => 1, :m => Matrix[[0,1],[0,0]] },            #bl
       { :x => 2, :y => 4, :s => 3, :m => Matrix[[1,1,0],[0,1,0]] },        #bc
-      { :x => 4, :y => 4, :s => 1, :m => Matrix[[0,0],[0,1]] }             #br
+      { :x => 4, :y => 4, :s => 1, :m => Matrix[[0,0],[0,1]] },            #br
+      { :x => 3, :y => 0, :s => 4, :m => Matrix[[1,1,1],[0,1,0]] }
     ]
   end
 
@@ -49,7 +50,7 @@ class TestMatrixExtensions < Test::Unit::TestCase
   def test_sub_matrix
     @examples.each do |expected|
       assert_equal expected[:m], 
-        @matrix.sub_matrix(expected[:x], expected[:y])
+        @matrix.sub_matrix(expected[:y], expected[:x])
     end
   end
 end
