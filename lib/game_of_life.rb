@@ -7,9 +7,12 @@ class Matrix
 end
 
 class GameOfLife
-  VERSION = '0.1.0'
-  ALIVE = 1
-  DEAD  = 0
+  VERSION      = '0.1.0'
+  ALIVE        = 1
+  DEAD         = 0
+  GREEN        = "\e[32m"
+  RED          = "\e[31m"
+  CLEAR_SCREEN = "\e[H\e[2J"
 
   def initialize(output=STDOUT)
     @output = output
@@ -25,7 +28,7 @@ class GameOfLife
   def run(generations)
     print_board(0)
     1.upto(generations) do |tick|
-      sleep(0.2)
+      sleep(0.1)
       @neighbors = @board.neighbor_sum
       @board = evolve_board
       print_board(tick)
@@ -56,11 +59,22 @@ class GameOfLife
   end
 
   def print_board(tick)
-    @output.puts "\e[H\e[2J"
+    @output.puts CLEAR_SCREEN
     @output.puts "Tick: #{tick}"
-    @board.row_vectors.each { |row| @output.puts "[#{row.to_a.join(' ')}]" }
+    @board.row_vectors.each do |row| 
+      @output.print '[ '
+      row.to_a.each do |col|
+        ALIVE == col ? color = GREEN : color = RED
+        @output.print colorize(col, color) + ' '
+      end
+      @output.print "]\n"
+    end
+  end
+
+  def colorize(text, color=GREEN)
+    "#{color}#{text}\e[0m"
   end
 end
 
 @game = GameOfLife.new
-@game.run(10)
+@game.run(50)
