@@ -1,5 +1,4 @@
 require 'matrix'
-require 'pp'
 
 module MatrixExtensions
   def neighbor_sum
@@ -21,7 +20,7 @@ module MatrixExtensions
   end
 
   def sum
-    self.to_a.flatten.sum
+    self.to_a.flatten.inject { |sum, i| sum+=i }
   end
 
   private
