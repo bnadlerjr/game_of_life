@@ -6,7 +6,7 @@ module MatrixExtensions
     0.upto(self.row_size-1) do |row|
       cols = []
       0.upto(self.column_size-1) do |col|
-        cols << (self.sub_matrix(row, col).sum - self[row, col])
+        cols << (self.sub_matrix(row, col).sum)
       end
       rows << cols
     end
@@ -16,11 +16,7 @@ module MatrixExtensions
   def sub_matrix(x, y)
     from_col, size_col = calc_col_info(x)
     from_row, size_row = calc_row_info(y)
-
-    rows = @rows[from_row, size_row].collect do |row|
-      row[from_col, size_col]
-    end
-    Matrix.rows(rows, false)
+    self.minor(from_row, size_row, from_col, size_col)
   end
 
   def sum
