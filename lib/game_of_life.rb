@@ -48,18 +48,18 @@ class GameOfLife
     0.upto(@board.row_size-1) do |row|
       cols = []
       0.upto(@board.column_size-1) do |col|
-        cols << evolve(@board[row, col], @neighbors[row, col])
+        cols << evolve_cell(@board[row, col], @neighbors[row, col])
       end
       rows << cols
     end
     Matrix.rows(rows)
   end
 
-  def evolve(value, neighbor_sum)
+  def evolve_cell(value, neighbor_sum)
     if ALIVE == value
       (neighbor_sum < 2 || neighbor_sum > 3) ? result = DEAD : result = ALIVE
     else
-      neighbor_sum == value ? result = ALIVE : result = DEAD
+      neighbor_sum == 3 ? result = ALIVE : result = DEAD
     end
     result
   end
