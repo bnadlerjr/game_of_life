@@ -47,10 +47,10 @@ class TestMatrixExtensions < Test::Unit::TestCase
     assert_equal expected, @matrix.neighbor_sum
   end
 
-  def test_sub_matrix
+  def test_three_by_three_sub_matrix
     @examples.each do |expected|
       assert_equal expected[:m], 
-        @matrix.sub_matrix(expected[:y], expected[:x])
+        @matrix.three_by_three_sub_matrix(expected[:y], expected[:x])
     end
   end
 end

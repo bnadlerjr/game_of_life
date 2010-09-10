@@ -6,14 +6,14 @@ module MatrixExtensions
     0.upto(self.row_size-1) do |row|
       cols = []
       0.upto(self.column_size-1) do |col|
-        cols << (self.sub_matrix(row, col).sum - self[row, col])
+        cols << (self.three_by_three_sub_matrix(row, col).sum - self[row, col])
       end
       rows << cols
     end
     Matrix.rows(rows, false)
   end
 
-  def sub_matrix(row, col)
+  def three_by_three_sub_matrix(row, col)
     from_col, size_col = calc_col_info(col)
     from_row, size_row = calc_row_info(row)
     self.minor(from_row, size_row, from_col, size_col)
