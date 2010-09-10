@@ -1,0 +1,8 @@
+#!user/bin/ruby
+
+$: << File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'game_of_life'
+
+game = GameOfLife.new
+game.run(50)
