@@ -1,4 +1,4 @@
 = Game of Life
 
 == Description
-Ruby version of Conway's Game of Life. Run using sample in /bin.
+Ruby version of Conway's Game of Life. Run using gol.rb in /bin.
